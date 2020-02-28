@@ -1223,7 +1223,7 @@ Possible extra rowspan handling
 </style>
   <meta content="Bikeshed version 5721fde7f6b8111f662b83b678f9e181a9838206" name="generator">
   <link href="https://github.com/weso/" rel="canonical">
-  <meta content="9452893bcf510e41578a377e12d86177590f06ce" name="document-revision">
+  <meta content="85eb139b19be8e98599d673be412643a516d8c87" name="document-revision">
 <style>/* style-md-lists */
 
 /* This is a weird hack for me not yet following the commonmark spec
@@ -1408,39 +1408,34 @@ Parts of this work may be from another specification document.  If so, those par
     <li>
      <a href="#intro①"><span class="secno">2</span> <span class="content">Language Specification</span></a>
      <ol class="toc">
+      <li><a href="#shex-lite-lang"><span class="secno">2.1</span> <span class="content">Compact Syntax</span></a>
+      <li><a href="#shex-lite-lang①"><span class="secno">2.2</span> <span class="content">Validation</span></a>
+      <li><a href="#shex-lite-lang②"><span class="secno">2.3</span> <span class="content">Structure of a Shape Expression</span></a>
       <li>
-       <a href="#shex-lite-lang"><span class="secno">2.1</span> <span class="content">The Shape Expressions Language Lite</span></a>
+       <a href="#shex-lite-lang③"><span class="secno">2.4</span> <span class="content">ShEx-Lite File</span></a>
        <ol class="toc">
-        <li><a href="#shex-lite-lang①"><span class="secno">2.1.1</span> <span class="content">Compact Syntax</span></a>
-        <li><a href="#shex-lite-lang②"><span class="secno">2.1.2</span> <span class="content">Validation</span></a>
-        <li><a href="#shex-lite-lang③"><span class="secno">2.1.3</span> <span class="content">Structure of a Shape Expression</span></a>
-        <li><a href="#shex-lite-lang④"><span class="secno">2.1.4</span> <span class="content">Start Shape Expression</span></a>
+        <li><a href="#shex-lite-lang④"><span class="secno">2.4.1</span> <span class="content">Structure</span></a>
        </ol>
       <li>
-       <a href="#shex-lite-lang⑤"><span class="secno">2.2</span> <span class="content">A Shape Expressions Litle File</span></a>
+       <a href="#shex-lite-lang⑤"><span class="secno">2.5</span> <span class="content">Directives</span></a>
        <ol class="toc">
-        <li><a href="#shex-lite-lang⑥"><span class="secno">2.2.1</span> <span class="content">Structure</span></a>
+        <li><a href="#shex-lite-lang⑥"><span class="secno">2.5.1</span> <span class="content">Prefixes</span></a>
+        <li><a href="#shex-lite-lang⑦"><span class="secno">2.5.2</span> <span class="content">Bases</span></a>
+        <li><a href="#shex-lite-lang⑧"><span class="secno">2.5.3</span> <span class="content">Start</span></a>
        </ol>
       <li>
-       <a href="#shex-lite-lang⑦"><span class="secno">2.3</span> <span class="content">Directive</span></a>
+       <a href="#shex-lite-lang⑨"><span class="secno">2.6</span> <span class="content">Shape</span></a>
        <ol class="toc">
-        <li><a href="#shex-lite-lang⑧"><span class="secno">2.3.1</span> <span class="content">Prefixe</span></a>
-        <li><a href="#shex-lite-lang⑨"><span class="secno">2.3.2</span> <span class="content">Base</span></a>
-        <li><a href="#shex-lite-lang①⓪"><span class="secno">2.3.3</span> <span class="content">Start</span></a>
-       </ol>
-      <li>
-       <a href="#shex-lite-lang①①"><span class="secno">2.4</span> <span class="content">Shape</span></a>
-       <ol class="toc">
-        <li><a href="#shex-lite-lang①②"><span class="secno">2.4.1</span> <span class="content">Structure</span></a>
+        <li><a href="#shex-lite-lang①⓪"><span class="secno">2.6.1</span> <span class="content">Structure</span></a>
         <li>
-         <a href="#shex-lite-lang①③"><span class="secno">2.4.2</span> <span class="content">Triple Expression</span></a>
+         <a href="#shex-lite-lang①①"><span class="secno">2.6.2</span> <span class="content">Triple Expression</span></a>
          <ol class="toc">
           <li>
-           <a href="#shex-lite-lang①④"><span class="secno">2.4.2.1</span> <span class="content">Triple Constraint</span></a>
+           <a href="#shex-lite-lang①②"><span class="secno">2.6.2.1</span> <span class="content">Triple Constraint</span></a>
            <ol class="toc">
-            <li><a href="#shex-lite-lang①⑤"><span class="secno">2.4.2.1.1</span> <span class="content">Property</span></a>
-            <li><a href="#shex-lite-lang①⑥"><span class="secno">2.4.2.1.2</span> <span class="content">Node Constraint</span></a>
-            <li><a href="#shex-lite-lang①⑦"><span class="secno">2.4.2.1.3</span> <span class="content">Cardinality</span></a>
+            <li><a href="#shex-lite-lang①③"><span class="secno">2.6.2.1.1</span> <span class="content">Property</span></a>
+            <li><a href="#shex-lite-lang①④"><span class="secno">2.6.2.1.2</span> <span class="content">Node Constraint</span></a>
+            <li><a href="#shex-lite-lang①⑤"><span class="secno">2.6.2.1.3</span> <span class="content">Cardinality</span></a>
            </ol>
          </ol>
        </ol>
@@ -1463,42 +1458,22 @@ Parts of this work may be from another specification document.  If so, those par
    <p>This document defines the ShEx language. See the Shape Expressions Primer for a non-normative description of ShEx.</p>
    <h2 class="heading settled" data-level="2" id="intro①"><span class="secno">2. </span><span class="content">Language Specification</span><a class="self-link" href="#intro①"></a></h2>
    <p>Shape Expressions (ShEx) is a schema language for describing RDF graphs structures. ShEx was originally developed in late 2013 to provide a human-readable syntax for OSLC Resource Shapes. Now ShEx-Lite has as an aim to reduce the complexity of ShEx by defining an specification of the 20% more used characteristics that allow up to the 80% of the expressiveness.</p>
-   <h3 class="heading settled" data-level="2.1" id="shex-lite-lang"><span class="secno">2.1. </span><span class="content">The Shape Expressions Language Lite</span><a class="self-link" href="#shex-lite-lang"></a></h3>
-    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. 
-   <h4 class="heading settled" data-level="2.1.1" id="shex-lite-lang①"><span class="secno">2.1.1. </span><span class="content">Compact Syntax</span><a class="self-link" href="#shex-lite-lang①"></a></h4>
-    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. 
-   <h4 class="heading settled" data-level="2.1.2" id="shex-lite-lang②"><span class="secno">2.1.2. </span><span class="content">Validation</span><a class="self-link" href="#shex-lite-lang②"></a></h4>
-    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. 
-   <h4 class="heading settled" data-level="2.1.3" id="shex-lite-lang③"><span class="secno">2.1.3. </span><span class="content">Structure of a Shape Expression</span><a class="self-link" href="#shex-lite-lang③"></a></h4>
-    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. 
-   <h4 class="heading settled" data-level="2.1.4" id="shex-lite-lang④"><span class="secno">2.1.4. </span><span class="content">Start Shape Expression</span><a class="self-link" href="#shex-lite-lang④"></a></h4>
-    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. 
-   <h3 class="heading settled" data-level="2.2" id="shex-lite-lang⑤"><span class="secno">2.2. </span><span class="content">A Shape Expressions Litle File</span><a class="self-link" href="#shex-lite-lang⑤"></a></h3>
-    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. 
-   <h4 class="heading settled" data-level="2.2.1" id="shex-lite-lang⑥"><span class="secno">2.2.1. </span><span class="content">Structure</span><a class="self-link" href="#shex-lite-lang⑥"></a></h4>
-    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. 
-   <h3 class="heading settled" data-level="2.3" id="shex-lite-lang⑦"><span class="secno">2.3. </span><span class="content">Directive</span><a class="self-link" href="#shex-lite-lang⑦"></a></h3>
-    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. 
-   <h4 class="heading settled" data-level="2.3.1" id="shex-lite-lang⑧"><span class="secno">2.3.1. </span><span class="content">Prefixe</span><a class="self-link" href="#shex-lite-lang⑧"></a></h4>
-    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. 
-   <h4 class="heading settled" data-level="2.3.2" id="shex-lite-lang⑨"><span class="secno">2.3.2. </span><span class="content">Base</span><a class="self-link" href="#shex-lite-lang⑨"></a></h4>
-    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. 
-   <h4 class="heading settled" data-level="2.3.3" id="shex-lite-lang①⓪"><span class="secno">2.3.3. </span><span class="content">Start</span><a class="self-link" href="#shex-lite-lang①⓪"></a></h4>
-    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. 
-   <h3 class="heading settled" data-level="2.4" id="shex-lite-lang①①"><span class="secno">2.4. </span><span class="content">Shape</span><a class="self-link" href="#shex-lite-lang①①"></a></h3>
-    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. 
-   <h4 class="heading settled" data-level="2.4.1" id="shex-lite-lang①②"><span class="secno">2.4.1. </span><span class="content">Structure</span><a class="self-link" href="#shex-lite-lang①②"></a></h4>
-    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. 
-   <h4 class="heading settled" data-level="2.4.2" id="shex-lite-lang①③"><span class="secno">2.4.2. </span><span class="content">Triple Expression</span><a class="self-link" href="#shex-lite-lang①③"></a></h4>
-    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. 
-   <h5 class="heading settled" data-level="2.4.2.1" id="shex-lite-lang①④"><span class="secno">2.4.2.1. </span><span class="content">Triple Constraint</span><a class="self-link" href="#shex-lite-lang①④"></a></h5>
-    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. 
-   <h6 class="heading settled" data-level="2.4.2.1.1" id="shex-lite-lang①⑤"><span class="secno">2.4.2.1.1. </span><span class="content">Property</span><a class="self-link" href="#shex-lite-lang①⑤"></a></h6>
-    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. 
-   <h6 class="heading settled" data-level="2.4.2.1.2" id="shex-lite-lang①⑥"><span class="secno">2.4.2.1.2. </span><span class="content">Node Constraint</span><a class="self-link" href="#shex-lite-lang①⑥"></a></h6>
-    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. 
-   <h6 class="heading settled" data-level="2.4.2.1.3" id="shex-lite-lang①⑦"><span class="secno">2.4.2.1.3. </span><span class="content">Cardinality</span><a class="self-link" href="#shex-lite-lang①⑦"></a></h6>
-    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. 
+   <h3 class="heading settled" data-level="2.1" id="shex-lite-lang"><span class="secno">2.1. </span><span class="content">Compact Syntax</span><a class="self-link" href="#shex-lite-lang"></a></h3>
+   <h3 class="heading settled" data-level="2.2" id="shex-lite-lang①"><span class="secno">2.2. </span><span class="content">Validation</span><a class="self-link" href="#shex-lite-lang①"></a></h3>
+   <h3 class="heading settled" data-level="2.3" id="shex-lite-lang②"><span class="secno">2.3. </span><span class="content">Structure of a Shape Expression</span><a class="self-link" href="#shex-lite-lang②"></a></h3>
+   <h3 class="heading settled" data-level="2.4" id="shex-lite-lang③"><span class="secno">2.4. </span><span class="content">ShEx-Lite File</span><a class="self-link" href="#shex-lite-lang③"></a></h3>
+   <h4 class="heading settled" data-level="2.4.1" id="shex-lite-lang④"><span class="secno">2.4.1. </span><span class="content">Structure</span><a class="self-link" href="#shex-lite-lang④"></a></h4>
+   <h3 class="heading settled" data-level="2.5" id="shex-lite-lang⑤"><span class="secno">2.5. </span><span class="content">Directives</span><a class="self-link" href="#shex-lite-lang⑤"></a></h3>
+   <h4 class="heading settled" data-level="2.5.1" id="shex-lite-lang⑥"><span class="secno">2.5.1. </span><span class="content">Prefixes</span><a class="self-link" href="#shex-lite-lang⑥"></a></h4>
+   <h4 class="heading settled" data-level="2.5.2" id="shex-lite-lang⑦"><span class="secno">2.5.2. </span><span class="content">Bases</span><a class="self-link" href="#shex-lite-lang⑦"></a></h4>
+   <h4 class="heading settled" data-level="2.5.3" id="shex-lite-lang⑧"><span class="secno">2.5.3. </span><span class="content">Start</span><a class="self-link" href="#shex-lite-lang⑧"></a></h4>
+   <h3 class="heading settled" data-level="2.6" id="shex-lite-lang⑨"><span class="secno">2.6. </span><span class="content">Shape</span><a class="self-link" href="#shex-lite-lang⑨"></a></h3>
+   <h4 class="heading settled" data-level="2.6.1" id="shex-lite-lang①⓪"><span class="secno">2.6.1. </span><span class="content">Structure</span><a class="self-link" href="#shex-lite-lang①⓪"></a></h4>
+   <h4 class="heading settled" data-level="2.6.2" id="shex-lite-lang①①"><span class="secno">2.6.2. </span><span class="content">Triple Expression</span><a class="self-link" href="#shex-lite-lang①①"></a></h4>
+   <h5 class="heading settled" data-level="2.6.2.1" id="shex-lite-lang①②"><span class="secno">2.6.2.1. </span><span class="content">Triple Constraint</span><a class="self-link" href="#shex-lite-lang①②"></a></h5>
+   <h6 class="heading settled" data-level="2.6.2.1.1" id="shex-lite-lang①③"><span class="secno">2.6.2.1.1. </span><span class="content">Property</span><a class="self-link" href="#shex-lite-lang①③"></a></h6>
+   <h6 class="heading settled" data-level="2.6.2.1.2" id="shex-lite-lang①④"><span class="secno">2.6.2.1.2. </span><span class="content">Node Constraint</span><a class="self-link" href="#shex-lite-lang①④"></a></h6>
+   <h6 class="heading settled" data-level="2.6.2.1.3" id="shex-lite-lang①⑤"><span class="secno">2.6.2.1.3. </span><span class="content">Cardinality</span><a class="self-link" href="#shex-lite-lang①⑤"></a></h6>
   </main>
   <div data-fill-with="conformance">
    <h2 class="no-ref no-num heading settled" id="conformance"><span class="content"> Conformance</span><a class="self-link" href="#conformance"></a></h2>
